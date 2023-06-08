@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { ModalConfirm } from "../../components/ModalConfirm";
 export default function QrCodeCreation() {
+  const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
+  const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
+  const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
+
   const [packageID, setPackageID] = useState("Package is NEAR");
   return (
     <>
       <nav>
-        <Link to="/">Go back</Link>
+        <button onClick={showConfirmGoBack}>Go back</button>
       </nav>
       <main>
         <h1>Print the QR-code</h1>
@@ -27,6 +31,13 @@ export default function QrCodeCreation() {
           Print
         </button>
       </main>
+      {displayConfirmGoBack && (
+        <ModalConfirm
+          message="Are you sure you want to go back?"
+          linkToConfirm="/"
+          hide={hideConfirmGoBack}
+        />
+      )}
     </>
   );
 }

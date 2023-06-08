@@ -4,7 +4,7 @@ export default function Root() {
   return (
     <>
       <main>
-        <h1>ETHDenver-app</h1>
+        <h1>ETHPrague-app</h1>
         <Link to="/create-package/creating">Create package</Link>
       </main>
     </>
