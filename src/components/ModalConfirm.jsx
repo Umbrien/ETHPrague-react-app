@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 export const ModalConfirm = ({ message, linkToConfirm, hide }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="fixed inset-0 bg-black opacity-50"></div> {/* Overlay */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center transition">
+      {/* Overlay */}
+      <div className="fixed inset-0 bg-black opacity-50" />
       <div className="relative w-80 rounded-lg bg-white p-6 shadow-md">
         <h2 className="mb-4 text-lg font-semibold">{message}</h2>
         <div className="flex justify-end gap-2">

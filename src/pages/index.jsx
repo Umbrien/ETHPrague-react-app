@@ -6,6 +6,7 @@ export default function Root() {
       <main>
         <h1>ETHPrague-app</h1>
         <Link to="/create-package/creating">Create package</Link>
+        <Link to="/scan-package/qr-code-scanning">Scan package</Link>
       </main>
     </>
   );
