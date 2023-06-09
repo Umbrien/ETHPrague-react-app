@@ -2,7 +2,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ModalConfirm } from "../../components/ModalConfirm";
 import backIcon from "../../assets/Back.png";
+import {
+  AcceptedEvent,
+  CreatedEvent,
+  HandledEvent,
+  MovedEvent,
+  ReportedEvent,
+} from "../../components/Events";
 
+const wallet = "0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51";
+const date = new Date();
 export default function PackageInfo() {
   //   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   //   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
@@ -127,6 +136,11 @@ export default function PackageInfo() {
                       0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
                     </span>
                   </li>
+                  <AcceptedEvent date={date} wallet={wallet} />
+                  <ReportedEvent date={date} wallet={wallet} />
+                  <HandledEvent date={date} wallet={wallet} />
+                  <MovedEvent date={date} />
+                  <CreatedEvent date={date} />
                 </ul>
               </nav>
             </div>
