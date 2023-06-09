@@ -25,6 +25,11 @@ export default function QrCodeScanning() {
         <p className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white">
           Package description
         </p> */}
+        {/* <div className="scan">
+          <div className="qrcode"></div>
+          <h3>QR Code Scanning...</h3>
+          <div className="bord"></div>
+        </div> */}
         <div className="mt-4 flex flex-col items-center justify-center">
           {isCameraScanning ? (
             <BarcodeScannerComponent

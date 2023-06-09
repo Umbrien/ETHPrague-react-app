@@ -39,7 +39,9 @@ export default function PackageInfo() {
                 <ul className="relative list-none pl-12">
                   <li>
                     <div className="flex items-center ">
-                      <p className="finalEvent max-md:text-2xl">Final event</p>
+                      <p className="finalEvent max-md:text-2xl">
+                        Package accepted
+                      </p>
                       <p className="text-2xl">09.06.23 22:33</p>
                     </div>
                     <span className="finalEvent2 break-all">
@@ -50,39 +52,80 @@ export default function PackageInfo() {
                   <li>
                     <div className="flex items-center">
                       <p className="violatedEvent max-md:text-2xl">
-                        Violated event
+                        Package reported
                       </p>
-                      <p className="text-red text-pr-red text-2xl">
+                      <p className="text-2xl text-primary-red">
                         09.06.23 22:33
                       </p>
                     </div>
                     <span className="violatedEvent break-all">
                       0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
                     </span>
-                    <p className="text-pr-red text-lg italic">
+                    <p className="text-lg italic text-primary-red">
                       Text from the “report input”
                     </p>
                   </li>
                   <li>
                     <div className="flex items-center">
                       <p className="handleEvent max-md:text-2xl">
-                        Handle event
+                        Package handled
                       </p>
                       <p className="text-2xl">09.06.23 22:33</p>
                     </div>
                     <span className="handleEvent2 break-all">
                       0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
                     </span>
+                    <ul className="list-disc">
+                      <li className=" ml-11 p-0 text-sm text-secondary-white max-sm:ml-5">
+                        <p className="m-0 break-all text-sm">
+                          Package created 09.06.23 18:53 by{" "}
+                        </p>
+                        <p className="m-0 break-all text-sm">
+                          0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
+                        </p>
+                      </li>
+                      <li className=" ml-11 p-0 text-sm text-secondary-white max-sm:ml-5">
+                        <p className="m-0 break-all text-sm">
+                          Package created 09.06.23 18:53 by{" "}
+                        </p>
+                        <p className="m-0 break-all text-sm">
+                          0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
+                        </p>
+                      </li>
+                      <li className=" ml-11 p-0 text-sm text-secondary-white max-sm:ml-5">
+                        <p className="m-0 break-all text-sm">
+                          Package created 09.06.23 18:53 by{" "}
+                        </p>
+                        <p className="m-0 break-all text-sm">
+                          0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
+                        </p>
+                      </li>
+                      <button className="ml-28 mt-6 text-sm text-secondary-white underline">
+                        Load more
+                      </button>
+                    </ul>
                   </li>
                   <li>
-                    <p className="normalEvent max-md:text-2xl">Normal event</p>
-                    <span>12:45</span>
+                    <div className="flex items-center">
+                      <p className="normalEvent max-md:text-2xl">
+                        Package moved
+                      </p>
+                      <p className="text-2xl">09.06.23 15:45</p>
+                    </div>
+                    <span className="break-all">
+                      0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
+                    </span>
                   </li>
                   <li>
-                    <p className="initialEvent max-md:text-2xl">
-                      Initial event
-                    </p>
-                    <span className="initialEvent2">9:04</span>
+                    <div className="flex items-center">
+                      <p className="initialEvent max-md:text-2xl">
+                        Package created
+                      </p>
+                      <p className="text-2xl">09.06.23 15:45</p>
+                    </div>
+                    <span className="initialEvent2 break-all">
+                      0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
+                    </span>
                   </li>
                 </ul>
               </nav>

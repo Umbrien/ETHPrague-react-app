@@ -149,7 +149,7 @@ li p::before {
   width: 34px;
   height: 34px;
   left: -50px;
-  top: -22px;
+  top: -30px;
   transform: translateY(-50%);
   border-radius: 50px;
   z-index: 2;
@@ -194,6 +194,34 @@ li p::before {
     top: -137px;
   }
 }
+@media screen and (max-width: 531px) {
+  .finalEvent2::before {
+    top: -46px;
+  }
+  .finalEvent3::before {
+    top: -152px;
+  }
+}
+@media screen and (max-width: 521px) {
+  .handleEvent2::before {
+    top: -50px;
+  }
+  .handleEvent2::after {
+    top: -50px;
+  }
+}
+
+@media screen and (max-width: 511px) {
+  .handleEvent2::before {
+    top: -49px;
+  }
+  .handleEvent2::after {
+    top: -49px;
+  }
+  .initialEvent2::before {
+    top: -46px;
+  }
+}
 @media screen and (max-width: 481px) {
   .handleEvent2::before {
     top: -49px;
@@ -215,3 +243,83 @@ li p::before {
     top: -212px;
   }
 }
+/* .scan {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+}
+
+.scan .qrcode {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: url(./assets/QR_Code01.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.scan .qrcode::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: url(./assets/QR_Code02.png);
+  background-size: 200px;
+  overflow: hidden;
+  animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    height: 20px;
+  }
+
+  50% {
+    height: calc(100% - 20px);
+  }
+}
+
+.scan .qrcode::after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  width: calc(100% = 40px);
+  height: 2px;
+  background: #35fd5c;
+  filter: drop-shadow(0 0 20px #35fd5c) drop-shadow(0 0 60px #35fd5c);
+  animation: animateLine 4s ease-in-out infinite;
+}
+
+@keyframes animateLine {
+  0% {
+    top: 20px;
+  }
+  50% {
+    top: calc(100% - 20px);
+  }
+}
+
+.bord {
+  position: absolute;
+  inset: 0;
+  background: url(./assets/border.png);
+  background-size: 200px;
+  background-repeat: no-repeat;
+  animation: animateText 0.5s linear infinite;
+}
+
+@keyframes animateText {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+} */
