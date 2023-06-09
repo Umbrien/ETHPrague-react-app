@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 export const ModalConfirm = ({ message, linkToConfirm, hide }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="fixed inset-0 bg-black opacity-50"></div> {/* Overlay */}
-      <div className="relative w-80 rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-4 text-lg font-semibold">{message}</h2>
+    <div className="absolute left-[780px] m-auto mt-32 flex w-1/5 flex-col rounded-md border border-secondary-white bg-secondary-black p-8 align-middle">
+      {/* <div className="bg-black fixed inset-0 opacity-50"></div> Overlay */}
+      <div className="">
+        <h2 className="text-center text-xl text-secondary-white">{message}</h2>
         <div className="flex justify-end gap-2">
           <Link
             to={linkToConfirm}
-            className="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
+            className="mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
           >
             Yes
           </Link>
           <button
-            className="mr-2 rounded bg-gray-300 px-4 py-2 font-semibold text-gray-800 hover:bg-gray-400"
+            className="mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
             onClick={hide}
           >
             No

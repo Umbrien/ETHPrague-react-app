@@ -1,0 +1,185 @@
+.status-red {
+  width: 136px;
+  height: 37.09px;
+
+  background: #e44320;
+  border-radius: 20px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+}
+.status-white {
+  width: 136px;
+  height: 37.09px;
+
+  background: #d9d9d9;
+  border-radius: 20px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  color: #1c1718;
+}
+.status-black {
+  background: #1c1718;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  width: 136px;
+  height: 37.09px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.customScroll::-webkit-scrollbar {
+  width: 6px; /* ширина всей полосы прокрутки */
+}
+
+.customScroll::-webkit-scrollbar-track {
+  background: #d9d9d9; /* цвет зоны отслеживания */
+  border-radius: 1rem;
+  height: 28px;
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+  background-color: #e44320; /* цвет бегунка */
+  border-radius: 1rem; /* округлось бегунка */
+  height: 20px;
+}
+
+/*  */
+ul::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: calc(100% - 58px);
+  left: 40px;
+  top: 0;
+  background: #d9d9d9;
+  margin-top: 29px;
+  /* z-index: -1; */
+}
+ul li {
+  padding: 30px 0;
+}
+li p {
+  text-decoration: none;
+  position: relative;
+  color: #d9d9d9;
+  font-size: 48px;
+  line-height: 1rem;
+  font-weight: 500;
+  margin-left: 26px;
+}
+li span {
+  position: relative;
+  margin-top: 100px;
+  color: #d9d9d9;
+  font-size: 24px;
+  line-height: 60px;
+  font-weight: 500;
+  margin-left: 26px;
+}
+li p::before {
+  content: "";
+  position: absolute;
+  /* background: #d9d9d9; */
+  width: 50px;
+  height: 50px;
+  left: -58px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50px;
+  z-index: 2;
+  margin-right: 100px;
+}
+.violatedEvent,
+.violatedEvent2 {
+  color: #e44320;
+}
+.violatedEvent::before {
+  background: red !important;
+}
+.finalEvent::before {
+  background: #d9d9d9 !important;
+}
+.finalEvent2::before {
+  content: "";
+  position: absolute;
+  background: #0f0f0f;
+  width: 34px;
+  height: 34px;
+  left: -50px;
+  top: -32px;
+  transform: translateY(-50%);
+  border-radius: 50px;
+  z-index: 2;
+  margin-right: 100px;
+}
+.finalEvent3::before {
+  content: "";
+  position: absolute;
+  background: #d9d9d9;
+  width: 24px;
+  height: 24px;
+  left: -45px;
+  top: -78px;
+  transform: translateY(-50%);
+  border-radius: 50px;
+  z-index: 3;
+  margin-right: 100px;
+}
+.normalEvent::before {
+  background: #d9d9d9 !important;
+}
+.initialEvent::before {
+  background: #d9d9d9 !important;
+}
+.initialEvent2::before {
+  content: "";
+  position: absolute;
+  background: #0f0f0f;
+  width: 34px;
+  height: 34px;
+  left: -50px;
+  top: -22px;
+  transform: translateY(-50%);
+  border-radius: 50px;
+  z-index: 2;
+  margin-right: 100px;
+}
+.handleEvent::before {
+  background: #d9d9d9 !important;
+}
+.handleEvent2 {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.handleEvent2::before,
+.handleEvent2::after {
+  content: "";
+  position: absolute;
+  top: -35px;
+  left: -48px;
+  width: 30px;
+  height: 8px;
+  background-color: black;
+  z-index: 3;
+}
+
+.handleEvent2::before {
+  transform: rotate(45deg);
+}
+
+.handleEvent2::after {
+  transform: rotate(-45deg);
+}
