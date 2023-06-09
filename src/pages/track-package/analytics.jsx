@@ -22,41 +22,33 @@ const data = {
 const options = {
   plugins: {
     legend: {
-      position: "right",
+      position: window.screen.width <= 321 ? "bottom" : "right",
       labels: {
-        padding: 60, // Set the desired margin value
+        padding: 20, // Set the desired margin value
       },
     },
   },
 };
 export default function Analytics() {
-  // const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
-  // const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
-  // const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
-
   return (
-    <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
+    <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10 max-sm:pl-0 max-sm:pr-0">
       <nav className="flex items-center text-4xl font-normal leading-[60px] text-secondary-white">
-        <Link
-          to="/"
-          className="ml-1 flex items-center"
-          // onClick={showConfirmGoBack}
-        >
+        <Link to="/" className="ml-1 flex items-center">
           <img className="mr-1" src={backIcon} alt="" />
           Back
         </Link>
       </nav>
       <main className="mt-8 flex flex-col">
         <div className="mt-4 flex flex-col">
-          <h1 className="text-6xl font-normal leading-[96px] text-secondary-white">
+          <h1 className="text-6xl font-normal leading-[96px] text-secondary-white max-md:text-center max-md:text-4xl">
             Packages analytics
           </h1>
-          <div className=" m-auto w-1/5">
+          <div className=" m-auto w-auto max-xl:mt-4">
             <Pie data={data} options={options} />
           </div>
-          <div className="customScroll h-[350px] overflow-y-auto text-4xl font-normal leading-[60px] text-secondary-white">
+          <div className="customScroll h-[350px] overflow-y-auto text-4xl font-normal leading-[60px] text-secondary-white max-md:h-[400px]">
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -66,7 +58,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -76,7 +68,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -86,7 +78,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -96,7 +88,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -106,7 +98,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -116,7 +108,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -126,7 +118,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -136,7 +128,7 @@ export default function Analytics() {
               </div>
             </Link>
             <Link to="/track-package/packages-information">
-              <div className="flex items-center border-b p-4">
+              <div className="flex items-center border-b p-4 max-md:flex-col">
                 <div className="">
                   <p>Package name </p>
                 </div>
@@ -148,13 +140,6 @@ export default function Analytics() {
           </div>
         </div>
       </main>
-      {/* {displayConfirmGoBack && (
-        <ModalConfirm
-          message="Are you sure you want to go back?"
-          linkToConfirm="/"
-          hide={hideConfirmGoBack}
-        />
-      )} */}
     </div>
   );
 }

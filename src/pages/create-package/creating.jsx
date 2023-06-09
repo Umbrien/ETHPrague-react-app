@@ -16,7 +16,7 @@ export default function Creating() {
         </button>
       </nav>
       <main className="mt-8 flex flex-col">
-        <h1 className="text-6xl font-normal leading-[96px] text-secondary-white">
+        <h1 className="text-6xl font-normal leading-[96px] text-secondary-white max-md:text-4xl max-sm:text-center">
           Create a package
         </h1>
         <input

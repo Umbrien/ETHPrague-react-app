@@ -183,3 +183,35 @@ li p::before {
 .handleEvent2::after {
   transform: rotate(-45deg);
 }
+
+@media screen and (max-width: 767px) {
+  .initialEvent2::before {
+    top: -29px;
+  }
+}
+@media screen and (max-width: 707px) {
+  .finalEvent3::before {
+    top: -137px;
+  }
+}
+@media screen and (max-width: 481px) {
+  .handleEvent2::before {
+    top: -49px;
+  }
+  .handleEvent2::after {
+    top: -49px;
+  }
+}
+@media screen and (max-width: 455px) {
+  .finalEvent2::before {
+    top: -46px;
+  }
+  .finalEvent3::before {
+    top: -152px;
+  }
+}
+@media screen and (max-width: 419px) {
+  .finalEvent3::before {
+    top: -212px;
+  }
+}

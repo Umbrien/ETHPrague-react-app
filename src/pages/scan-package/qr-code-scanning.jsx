@@ -16,7 +16,7 @@ export default function QrCodeScanning() {
         </Link>
       </nav>
       <main className="mt-8 flex flex-col">
-        <h1 className=" text-6xl font-normal leading-[96px] text-secondary-white">
+        <h1 className="text-6xl font-normal leading-[96px] text-secondary-white max-md:text-4xl max-sm:text-center">
           Scan the QR-code
         </h1>
         {/* <h2 className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white">
@@ -25,7 +25,7 @@ export default function QrCodeScanning() {
         <p className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white">
           Package description
         </p> */}
-        <div className="flex items-center justify-center">
+        <div className="mt-4 flex flex-col items-center justify-center">
           {isCameraScanning ? (
             <BarcodeScannerComponent
               width={600}
@@ -45,7 +45,11 @@ export default function QrCodeScanning() {
               Scan with camera
             </button>
           )}
-          {data && <p>{data}</p>}
+          {data && (
+            <p className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white">
+              {data}
+            </p>
+          )}
         </div>
       </main>
     </div>

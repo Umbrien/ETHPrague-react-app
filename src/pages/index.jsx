@@ -8,7 +8,6 @@ export default function Root() {
         <Link to="/create-package/creating">Create package</Link>
         <Link to="/track-package/analytics">Packages analytics</Link>
         <Link to="/scan-package/qr-code-scanning">Scan package</Link>
-        <Link to="/scan-package/qr-code-scanning">Scan package</Link>
       </main>
     </>
   );
