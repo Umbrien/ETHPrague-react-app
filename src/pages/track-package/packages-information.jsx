@@ -2,7 +2,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ModalConfirm } from "../../components/ModalConfirm";
 import backIcon from "../../assets/Back.png";
+import {
+  AcceptedEvent,
+  CreatedEvent,
+  HandledEvent,
+  MovedEvent,
+  ReportedEvent,
+} from "../../components/Events";
 
+const wallet = "0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51";
+const date = new Date();
 export default function PackageInfo() {
   //   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   //   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
@@ -37,53 +46,11 @@ export default function PackageInfo() {
               </div>
               <nav className="progressBar">
                 <ul className="relative list-none pl-12">
-                  <li>
-                    <div className="flex items-center ">
-                      <p className="finalEvent max-md:text-2xl">Final event</p>
-                      <p className="text-2xl">09.06.23 22:33</p>
-                    </div>
-                    <span className="finalEvent2 break-all">
-                      0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
-                    </span>
-                    <p className="finalEvent3"></p>
-                  </li>
-                  <li>
-                    <div className="flex items-center">
-                      <p className="violatedEvent max-md:text-2xl">
-                        Violated event
-                      </p>
-                      <p className="text-red text-pr-red text-2xl">
-                        09.06.23 22:33
-                      </p>
-                    </div>
-                    <span className="violatedEvent break-all">
-                      0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
-                    </span>
-                    <p className="text-pr-red text-lg italic">
-                      Text from the “report input”
-                    </p>
-                  </li>
-                  <li>
-                    <div className="flex items-center">
-                      <p className="handleEvent max-md:text-2xl">
-                        Handle event
-                      </p>
-                      <p className="text-2xl">09.06.23 22:33</p>
-                    </div>
-                    <span className="handleEvent2 break-all">
-                      0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51
-                    </span>
-                  </li>
-                  <li>
-                    <p className="normalEvent max-md:text-2xl">Normal event</p>
-                    <span>12:45</span>
-                  </li>
-                  <li>
-                    <p className="initialEvent max-md:text-2xl">
-                      Initial event
-                    </p>
-                    <span className="initialEvent2">9:04</span>
-                  </li>
+                  <AcceptedEvent date={date} wallet={wallet} />
+                  <ReportedEvent date={date} wallet={wallet} />
+                  <HandledEvent date={date} wallet={wallet} />
+                  <MovedEvent date={date} />
+                  <CreatedEvent date={date} />
                 </ul>
               </nav>
             </div>
