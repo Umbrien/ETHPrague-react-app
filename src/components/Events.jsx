@@ -20,12 +20,25 @@ export const ReportedEvent = ({ date, wallet }) => {
     <li>
       <div className="flex items-center">
         <p className="violatedEvent max-md:text-2xl">Package reported</p>
-        <p className="text-red text-pr-red text-2xl">{formatDate(date)}</p>
+        <p className="text-2xl text-primary-red">{formatDate(date)}</p>
       </div>
       <span className="violatedEvent break-all">
         {abbreviateWalletAddress(wallet)}
       </span>
-      <p className="text-pr-red text-lg italic">Text from the “report input”</p>
+      <p className="text-lg italic text-primary-red">
+        Text from the “report input”
+      </p>
+    </li>
+  );
+};
+
+const HandledSubEvent = ({ date, wallet }) => {
+  return (
+    <li className=" ml-11 p-0 text-sm text-secondary-white max-sm:ml-5">
+      <p className="m-0 break-all text-sm">
+        Package created {formatDate(date)} by
+      </p>
+      <p className="m-0 break-all text-sm">{abbreviateWalletAddress(wallet)}</p>
     </li>
   );
 };
@@ -40,24 +53,40 @@ export const HandledEvent = ({ date, wallet }) => {
       <span className="handleEvent2 break-all">
         {abbreviateWalletAddress(wallet)}
       </span>
+      <ul className="list-disc">
+        <HandledSubEvent date={date} wallet={wallet} />
+        <HandledSubEvent date={date} wallet={wallet} />
+        <HandledSubEvent date={date} wallet={wallet} />
+        <button className="ml-28 mt-6 text-sm text-secondary-white underline">
+          Load more
+        </button>
+      </ul>
     </li>
   );
 };
 
-export const MovedEvent = ({ date }) => {
+export const MovedEvent = ({ date, wallet }) => {
   return (
     <li>
-      <p className="normalEvent max-md:text-2xl">Package moved</p>
-      <span>{formatDate(date)}</span>
+      <div className="flex items-center">
+        <p className="normalEvent max-md:text-2xl">Package moved</p>
+        <p className="text-2xl">{formatDate(date)}</p>
+      </div>
+      <span className="break-all">{abbreviateWalletAddress(wallet)}</span>
     </li>
   );
 };
 
-export const CreatedEvent = ({ date }) => {
+export const CreatedEvent = ({ date, wallet }) => {
   return (
     <li>
-      <p className="initialEvent max-md:text-2xl">Package created</p>
-      <span className="initialEvent2">{formatDate(date)}</span>
+      <div className="flex items-center">
+        <p className="initialEvent max-md:text-2xl">Package created</p>
+        <p className="text-2xl">{formatDate(date)}</p>
+      </div>
+      <span className="initialEvent2 break-all">
+        {abbreviateWalletAddress(wallet)}
+      </span>
     </li>
   );
 };
