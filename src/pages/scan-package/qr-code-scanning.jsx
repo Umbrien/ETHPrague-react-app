@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BarcodeScannerComponent } from "../../components/BarcodeScannerComponent";
 import { Link } from "react-router-dom";
 export default function QrCodeScanning() {
   const [data, setData] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
+  const copy = () => {
+    navigator.clipboard.writeText(data);
+    setIsCopied(true);
+  };
+
+  useEffect(() => {
+    setIsCopied(false);
+  }, [data]);
+
   const [isCameraScanning, setIsCameraScanning] = useState(false);
   const turnOnCameraScanning = () => setIsCameraScanning(true);
   const turnOffCameraScanning = () => setIsCameraScanning(false);
@@ -46,13 +56,18 @@ export default function QrCodeScanning() {
               className="mt-10 h-12 w-56 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
               onClick={turnOnCameraScanning}
             >
-              Scan with camera
+              {data ? "Scan again" : "Scan QR-code"}
             </button>
           )}
           {data && (
-            <p className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white">
-              {data}
-            </p>
+            <>
+              <p className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white">
+                {data}
+              </p>
+              <button className="text-secondary-white" onClick={copy}>
+                {isCopied ? "👌 Copied" : "Copy"}
+              </button>
+            </>
           )}
         </div>
       </main>
