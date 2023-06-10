@@ -191,7 +191,23 @@ li p::before {
 }
 @media screen and (max-width: 707px) {
   .finalEvent3::before {
-    top: -137px;
+    top: -78px;
+  }
+}
+@media screen and (max-width: 557px) {
+  .finalEvent2::before {
+    top: -46px;
+  }
+  .finalEvent3::before {
+    top: -92px;
+  }
+}
+@media screen and (max-width: 547px) {
+  .handleEvent2::before {
+    top: -50px;
+  }
+  .handleEvent2::after {
+    top: -50px;
   }
 }
 @media screen and (max-width: 531px) {
@@ -199,7 +215,7 @@ li p::before {
     top: -46px;
   }
   .finalEvent3::before {
-    top: -152px;
+    top: -92px;
   }
 }
 @media screen and (max-width: 521px) {
@@ -235,12 +251,12 @@ li p::before {
     top: -46px;
   }
   .finalEvent3::before {
-    top: -152px;
+    top: -92px;
   }
 }
 @media screen and (max-width: 419px) {
   .finalEvent3::before {
-    top: -212px;
+    top: -92px;
   }
 }
 /* .scan {

@@ -22,7 +22,7 @@ export default function Root() {
           Wallet
         </Link>
       </nav>
-      <main className="flex  flex-col items-center	">
+      <main className="flex  flex-col items-center	max-lg:mt-14">
         <div className="flex items-center justify-center p-12 max-lg:flex-col max-lg:p-3 max-md:p-6">
           <div className=" flex items-center justify-center">
             <Link
@@ -37,7 +37,7 @@ export default function Root() {
           </div>
           <div className="ml-4 flex flex-col items-center justify-between max-lg:ml-0 max-lg:mt-5">
             <Link
-              className=" h-2/3 rounded-lg border border-primary-red bg-secondary-black p-9 text-4xl text-secondary-white max-sm:p-5 max-sm:text-2xl"
+              className=" h-2/3 rounded-lg border-4 border-primary-red bg-secondary-black p-9 text-4xl text-secondary-white max-sm:p-5 max-sm:text-2xl"
               to="/track-package/analytics"
             >
               <img className="m-auto max-sm:w-52" src="/graph.png" alt="" />
@@ -46,7 +46,7 @@ export default function Root() {
               </p>
             </Link>
             <Link
-              className=" mt-3 h-2/3  rounded-lg border border-secondary-white  bg-secondary-black p-12 text-4xl text-secondary-white max-sm:w-64 max-sm:p-5 max-sm:text-2xl"
+              className="mt-3 h-2/3 rounded-lg border-4 border-secondary-white  bg-secondary-black p-12 text-4xl text-secondary-white max-sm:w-64 max-sm:p-5 max-sm:text-2xl"
               to="/scan-package/qr-code-scanning"
             >
               <img className="m-auto" src="/scan.png" alt="" />

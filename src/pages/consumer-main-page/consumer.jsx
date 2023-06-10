@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function Swap() {
   return (
-    <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
+    <div className="relative flex min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center justify-between text-4xl font-normal leading-[60px] text-primary-red max-[430px]:flex-col">
         <Link
           to="/changing-role/swap-role"
@@ -26,13 +26,19 @@ export default function Swap() {
               className=" text-white mt-3  h-520  w-520 rounded-lg bg-primary-red p-12 text-4xl max-lg:h-420 max-lg:w-420 max-sm:h-320  max-sm:w-64 max-sm:p-5 max-sm:text-2xl "
               to="/scan-package/qr-code-scanning"
             >
-              <img className="m-auto" src="/scan-user.png" alt="" />
-              <p className="mt-16 text-center text-5xl text-primary-white max-lg:mt-8 max-sm:text-3xl">
+              <img
+                className="m-auto mt-10 max-lg:mt-2"
+                src="/scan-user.png"
+                alt=""
+              />
+              <p className="mt-16 text-center text-5xl text-primary-white max-lg:mt-8 max-md:mt-5 max-sm:text-3xl">
                 Scan package
               </p>
             </Link>
           </div>
         </div>
+      </main>
+      <footer className="flex flex-col  items-center justify-center">
         <h1 className="flex flex-row items-center text-6xl font-normal leading-[96px] text-primary-red max-md:text-4xl  max-sm:mt-3 max-sm:text-center max-sm:text-lg">
           <img className="mr-2 w-20 max-sm:w-20" src="/logo.png" alt="" />
           SustainChain
@@ -44,7 +50,7 @@ export default function Swap() {
           </span>
           <span className="text-primary-red">Empowering.</span>
         </h2>
-      </main>
+      </footer>
     </div>
   );
 }
