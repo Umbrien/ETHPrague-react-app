@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "near-social-bridge";
 import { ConsumerMainPage } from "../components/ConsumerMainPage";
@@ -8,33 +8,44 @@ const getIsLoggedIn = (payload) => request("is-logged", payload);
 const getIsAdmin = (payload) => request("is-admin", payload);
 
 export default function Root() {
-  const [isLogged, setIsLogged] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLogged, setIsLogged] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(null);
+  const [isForceRefetch, setIsForceRefetch] = useState(false);
+  const refetch = () => setIsForceRefetch((r) => !r);
+
+  const isStartedFetchingLogin = useRef(false);
+  const isStartedFetchingAdmin = useRef(false);
+
   useEffect(() => {
+    refetch();
+  }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [isLogged, isAdmin]);
+
+  if (isLogged === null && !isStartedFetchingLogin.current) {
+    isStartedFetchingLogin.current = true;
     getIsLoggedIn()
       .then((res) => {
         setIsLogged(res);
       })
       .catch((err) => console.log("error getting is logged in iframe", err));
-  }, []);
+  }
 
-  useEffect(() => {
-    console.log("isLogged useEffect", isLogged);
-    if (isLogged) {
-      getIsAdmin()
-        .then((res) => {
-          console.log("is admin", res);
-          setIsAdmin(res);
-        })
-        .catch((err) => console.log("error getting is admin in iframe", err));
-    } else {
-      getIsLoggedIn()
-        .then((res) => {
-          setIsLogged(res);
-        })
-        .catch((err) => console.log("error getting is logged in iframe", err));
-    }
-  }, [isLogged]);
+  if (
+    isLogged !== null &&
+    isAdmin === null &&
+    !isStartedFetchingAdmin.current
+  ) {
+    isStartedFetchingAdmin.current = true;
+    getIsAdmin()
+      .then((res) => {
+        console.log("is admin", res);
+        setIsAdmin(res);
+      })
+      .catch((err) => console.log("error getting is admin in iframe", err));
+  }
 
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
