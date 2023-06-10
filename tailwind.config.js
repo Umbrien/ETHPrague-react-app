@@ -8,8 +8,16 @@ export default {
       "secondary-white": "#D9D9D9",
       "input-background": "#1E1E1E",
       "bg-overlay": "#00000080",
+      "primary-white": "#FFFFFF",
     },
-    extend: {},
+    extend: {
+      spacing: {
+        540: "540px",
+        520: "520px",
+        420: "420px",
+        320: "320px",
+      },
+    },
   },
   plugins: [],
 };

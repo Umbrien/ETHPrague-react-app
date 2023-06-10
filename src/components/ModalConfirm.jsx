@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const ModalConfirm = ({ message, linkToConfirm, hide }) => {
   return (
     <div className="fixed left-0 top-0 flex h-screen w-screen items-center justify-center bg-bg-overlay ">
-      <div className="w-3/12 rounded-md border border-secondary-white	 bg-secondary-black p-5 max-md:w-3/6">
+      <div className="w-3/12 rounded-md border border-secondary-white	 bg-secondary-black p-5 max-md:w-3/6 max-sm:w-4/5">
         <h2 className="text-center text-xl text-secondary-white">{message}</h2>
         <div className="flex justify-end gap-2">
           <Link
