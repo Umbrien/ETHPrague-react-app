@@ -1,4 +1,6 @@
 import "./App.css";
+import "near-social-bridge/near-social-bridge.css";
+import { NearSocialBridgeProvider } from "near-social-bridge";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const pages = import.meta.glob("./pages/**/*.jsx", { eager: true });
@@ -31,8 +33,21 @@ const router = createBrowserRouter(
   }))
 );
 
+const FallbackSpinner = () => {
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-primary-red"></div>
+    </div>
+  );
+};
+
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    // <NearSocialBridgeProvider fallback={<FallbackSpinner />}>
+    <NearSocialBridgeProvider fallback={<RouterProvider router={router} />}>
+      <RouterProvider router={router} />
+    </NearSocialBridgeProvider>
+  );
 };
 
 export default App;

@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
+import { request } from "near-social-bridge";
+const getIsLoggedIn = (payload) => request("is-logged", payload);
 
+getIsLoggedIn()
+  .then((res) => console.log("response is", res))
+  .catch((err) => console.log("error getting is logged in iframe", err));
 export default function Root() {
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
