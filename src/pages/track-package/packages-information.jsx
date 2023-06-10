@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import backIcon from "../../assets/Back.png";
 import {
   AcceptedEvent,
   CreatedEvent,
@@ -18,7 +17,7 @@ export default function PackageInfo() {
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center text-4xl font-normal leading-[60px] text-secondary-white">
         <Link to="/track-package/analytics" className="ml-1 flex items-center">
-          <img className="mr-1" src={backIcon} alt="" />
+          <img className="mr-1" src="/back.png" alt="" />
           Back
         </Link>
       </nav>

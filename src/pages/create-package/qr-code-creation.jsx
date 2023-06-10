@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ModalConfirm } from "../../components/ModalConfirm";
-import backIcon from "../../assets/Back.png";
 
 export default function QrCodeCreation() {
   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
@@ -12,7 +11,7 @@ export default function QrCodeCreation() {
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center text-4xl font-normal leading-[60px] text-secondary-white">
         <button className="ml-1 flex items-center" onClick={showConfirmGoBack}>
-          <img className="mr-1" src={backIcon} alt="" />
+          <img className="mr-1" src="/back.png" alt="" />
           Back
         </button>
       </nav>

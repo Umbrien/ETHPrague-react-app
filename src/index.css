@@ -255,7 +255,7 @@ li p::before {
   position: relative;
   width: 200px;
   height: 200px;
-  background: url(./assets/QR_Code01.png);
+  background: url(QR_Code01.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -267,7 +267,7 @@ li p::before {
   top: 0;
   left: 0;
   width: 100%;
-  background: url(./assets/QR_Code02.png);
+  background: url(QR_Code02.png);
   background-size: 200px;
   overflow: hidden;
   animation: animate 4s ease-in-out infinite;
@@ -307,7 +307,7 @@ li p::before {
 .bord {
   position: absolute;
   inset: 0;
-  background: url(./assets/border.png);
+  background: url(/border.png);
   background-size: 200px;
   background-repeat: no-repeat;
   animation: animateText 0.5s linear infinite;
