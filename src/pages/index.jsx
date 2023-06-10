@@ -4,10 +4,21 @@ export default function Root() {
   return (
     <>
       <main className="flex flex-col">
-        <h1>ETHPrague-app</h1>
-        <Link to="/create-package/creating">Create package</Link>
-        <Link to="/track-package/analytics">Packages analytics</Link>
-        <Link to="/scan-package/qr-code-scanning">Scan package</Link>
+        <h1>SustainChain</h1>
+        <Link to="/change-role">Change role</Link>
+        <div className="flex-row md:flex-col-reverse">
+          <div className="flex-col gap-4">
+            <div>
+              <Link to="/track-package/analytics">Track packages</Link>
+            </div>
+            <div>
+              <Link to="/scan-package/qr-code-scanning">Scan package</Link>
+            </div>
+          </div>
+          <div>
+            <Link to="/create-package/creating">Create package</Link>
+          </div>
+        </div>
       </main>
     </>
   );
