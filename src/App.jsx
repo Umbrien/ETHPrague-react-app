@@ -1,5 +1,10 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  ThirdwebProvider,
+  ConnectWallet,
+  metamaskWallet,
+} from "@thirdweb-dev/react";
 
 const pages = import.meta.glob("./pages/**/*.jsx", { eager: true });
 
@@ -32,7 +37,12 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ThirdwebProvider wallet={[metamaskWallet()]}>
+      <ConnectWallet />
+      <RouterProvider router={router} />
+    </ThirdwebProvider>
+  );
 };
 
 export default App;
