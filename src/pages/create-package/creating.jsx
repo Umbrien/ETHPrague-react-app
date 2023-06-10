@@ -36,7 +36,7 @@ export default function Creating() {
       </main>
       {displayConfirmGoBack && (
         <ModalConfirm
-          message="Are you sure you want to go back?"
+          message="If you go back, the information you've entered won't be saved. Are you sure?"
           linkToConfirm="/"
           hide={hideConfirmGoBack}
         />
