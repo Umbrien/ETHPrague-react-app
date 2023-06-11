@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getIsLoggedIn, getIsAdmin } from "../contract-requests/getters";
+import {
+  getIsLoggedIn,
+  getIsAdmin,
+  getWalletAddress,
+} from "../contract-requests/getters";
 import { ConsumerMainPage } from "../components/ConsumerMainPage";
 import { AdminMainPage } from "../components/AdminMainPage";
+import { abbreviateWalletAddress } from "../utils";
 
 export default function Root() {
   const [isLogged, setIsLogged] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
+  const [walletAddress, setWalletAddress] = useState(null);
   const [isForceRefetch, setIsForceRefetch] = useState(false);
   const refetch = () => setIsForceRefetch((r) => !r);
 
@@ -45,6 +51,16 @@ export default function Root() {
       .catch((err) => console.log("error getting is admin in iframe", err));
   }
 
+  if (isLogged === true && walletAddress === null) {
+    getWalletAddress()
+      .then((res) => {
+        setWalletAddress(res);
+      })
+      .catch((err) =>
+        console.log("error getting wallet address in iframe", err)
+      );
+  }
+
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center justify-between text-4xl font-normal leading-[60px] text-primary-red max-[430px]:flex-col">
@@ -58,7 +74,8 @@ export default function Root() {
           to="/track-package/packages-information"
           className=" flex h-14 w-52 items-center justify-center rounded-xl border border-primary-red text-center text-xl font-normal max-sm:h-10 max-sm:w-40 max-sm:text-lg max-[430px]:mt-6"
         >
-          Wallet
+          {!isLogged && "Log in to handle packages"}
+          {isLogged && walletAddress && abbreviateWalletAddress(walletAddress)}
         </Link>
       </nav>
       <main className="flex  flex-col items-center	max-lg:mt-14">
