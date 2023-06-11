@@ -1,10 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ModalConfirm } from "../../components/ModalConfirm";
+import { createPackage } from "../../contract-requests/getters";
+
 export default function Creating() {
   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
   const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
+
+  const [description, setDescription] = useState("");
+
+  const handleClick = () => {
+    createPackage(description).then((res) => {
+      console.log("create package", res);
+    });
+  };
 
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
@@ -24,15 +34,18 @@ export default function Creating() {
           placeholder="Package name"
         />
         <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className="border-white mt-8 h-64 rounded-lg border bg-input-background p-5 text-3xl font-normal leading-[48px] text-secondary-white"
           placeholder="Package description"
         ></textarea>
-        <Link
+        {/* to="/create-package/qr-code-creation" */}
+        <button
+          onClick={handleClick}
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
-          to="/create-package/qr-code-creation"
         >
           Save
-        </Link>
+        </button>
       </main>
       {displayConfirmGoBack && (
         <ModalConfirm
