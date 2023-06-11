@@ -33,7 +33,7 @@ export const AdminMainPage = () => {
           onClick={showConfirmGoBack}
         >
           <img className="m-auto" src="/scan.png" alt="" />
-          <p className="mt-2 text-center text-primary-white">Scan package</p>
+          <p className="mt-2 text-center text-primary-white">Package info</p>
         </button>
       </div>
       {displayConfirmGoBack && (
