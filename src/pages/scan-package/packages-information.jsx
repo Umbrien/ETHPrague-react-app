@@ -7,7 +7,7 @@ import {
   MovedEvent,
   ReportedEvent,
 } from "../../components/Events";
-import { acceptPackage } from "../../contract-requests/getters";
+import { acceptPackage, getGqlBranch } from "../../contract-requests/getters";
 
 const wallet = "0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51";
 const date = new Date();
@@ -28,6 +28,21 @@ export default function PackageInfo() {
       .catch((err) => console.log("error confirming package", err));
   };
 
+  const [gqlBranch, setGqlBranch] = useState(null);
+
+  if (gqlBranch === null) {
+    handleGetBranch();
+  }
+
+  function handleGetBranch() {
+    getGqlBranch(id)
+      .then((res) => {
+        console.log("getGqlBranch", res);
+        setGqlBranch(res);
+      })
+      .catch((err) => console.log("error getGqlBranch", err));
+  }
+
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center text-4xl font-normal leading-[60px] text-secondary-white">
@@ -38,26 +53,67 @@ export default function PackageInfo() {
       </nav>
       <main className="mt-8 flex flex-col">
         <div className="mt-4 flex flex-col">
-          <h1 className=" text-6xl font-normal leading-[96px] text-secondary-white max-md:text-center max-md:text-4xl">
+          <h1
+            onClick={handleGetBranch}
+            className=" text-6xl font-normal leading-[96px] text-secondary-white max-md:text-center max-md:text-4xl"
+          >
             Packages information
           </h1>
           <div className="flex items-center max-lg:flex-col max-md:mt-4 max-md:items-center">
             <div className="flex flex-col  max-md:flex-col max-md:items-center">
               <div className="w-1/2 max-sm:w-5/6">
                 <p className="mt-8 text-4xl font-normal leading-[60px] text-secondary-white max-md:text-3xl">
-                  title
+                  {gqlBranch?.[0].name || "Package name"}
                 </p>
                 <p className="mt-8 text-4xl font-normal leading-[60px] text-secondary-white max-md:text-3xl">
-                  text
+                  {gqlBranch?.[0].description || "Package description"}
                 </p>
               </div>
               <nav className="progressBar">
                 <ul className="relative list-none pl-12">
-                  <AcceptedEvent date={date} wallet={wallet} />
-                  <ReportedEvent date={date} wallet={wallet} />
-                  <HandledEvent date={date} wallet={wallet} />
-                  <MovedEvent date={date} wallet={wallet} />
-                  <CreatedEvent date={date} wallet={wallet} />
+                  {gqlBranch?.map((snapshot, index) => {
+                    if (snapshot.status === 0) {
+                      return (
+                        <CreatedEvent
+                          key={"event-" + index}
+                          date={new Date(parseInt(snapshot.created) * 1000)}
+                          wallet={snapshot.handler}
+                        />
+                      );
+                    } else if (snapshot.status === 1) {
+                      return (
+                        <MovedEvent
+                          key={"event-" + index}
+                          date={new Date(parseInt(snapshot.created) * 1000)}
+                          wallet={snapshot.handler}
+                        />
+                      );
+                    } else if (snapshot.status === 2) {
+                      return (
+                        <HandledEvent
+                          key={"event-" + index}
+                          date={new Date(parseInt(snapshot.created) * 1000)}
+                          wallet={snapshot.handler}
+                        />
+                      );
+                    } else if (snapshot.status === 3) {
+                      return (
+                        <ReportedEvent
+                          key={"event-" + index}
+                          date={new Date(parseInt(snapshot.created) * 1000)}
+                          wallet={snapshot.handler}
+                        />
+                      );
+                    } else if (snapshot.status === 4) {
+                      return (
+                        <AcceptedEvent
+                          key={"event-" + index}
+                          date={new Date(parseInt(snapshot.created) * 1000)}
+                          wallet={snapshot.handler}
+                        />
+                      );
+                    }
+                  })}
                 </ul>
               </nav>
             </div>
