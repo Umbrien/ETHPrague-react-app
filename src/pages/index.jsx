@@ -1,11 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { request } from "near-social-bridge";
+import { getIsLoggedIn, getIsAdmin } from "../contract-requests/getters";
 import { ConsumerMainPage } from "../components/ConsumerMainPage";
 import { AdminMainPage } from "../components/AdminMainPage";
-
-const getIsLoggedIn = (payload) => request("is-logged", payload);
-const getIsAdmin = (payload) => request("is-admin", payload);
 
 export default function Root() {
   const [isLogged, setIsLogged] = useState(null);
@@ -13,8 +10,8 @@ export default function Root() {
   const [isForceRefetch, setIsForceRefetch] = useState(false);
   const refetch = () => setIsForceRefetch((r) => !r);
 
-  const isStartedFetchingLogin = useRef(false);
-  const isStartedFetchingAdmin = useRef(false);
+  // const isStartedFetchingLogin = useRef(false);
+  // const isStartedFetchingAdmin = useRef(false);
 
   useEffect(() => {
     refetch();
@@ -24,8 +21,9 @@ export default function Root() {
     refetch();
   }, [isLogged, isAdmin]);
 
-  if (isLogged === null && !isStartedFetchingLogin.current) {
-    isStartedFetchingLogin.current = true;
+  // if (isLogged === null && !isStartedFetchingLogin.current) {
+  if (isLogged === null) {
+    // isStartedFetchingLogin.current = true;
     getIsLoggedIn()
       .then((res) => {
         setIsLogged(res);
@@ -35,10 +33,10 @@ export default function Root() {
 
   if (
     isLogged !== null &&
-    isAdmin === null &&
-    !isStartedFetchingAdmin.current
+    isAdmin === null
+    // && !isStartedFetchingAdmin.current
   ) {
-    isStartedFetchingAdmin.current = true;
+    // isStartedFetchingAdmin.current = true;
     getIsAdmin()
       .then((res) => {
         console.log("is admin", res);
@@ -51,10 +49,10 @@ export default function Root() {
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center justify-between text-4xl font-normal leading-[60px] text-primary-red max-[430px]:flex-col">
         <Link
-          to="/changing-role/makemeuser"
+          to={isLogged ? "/change-role" : "#"}
           className="ml-1 flex h-14 w-52 items-center justify-center rounded-xl border border-primary-red text-center text-xl font-normal max-sm:h-10 max-sm:w-40 max-sm:text-lg"
         >
-          Change my role
+          {isLogged && "Change my role"}
         </Link>
         <Link
           to="/track-package/packages-information"
