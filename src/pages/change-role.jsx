@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getIsAdmin } from "../contract-requests/getters";
+import {
+  getIsAdmin,
+  makeMeAdmin,
+  makeMeUser,
+} from "../contract-requests/getters";
 
 const textForAdmin = `Your current role is "admin", in the purpose of testing during the
 hackathon, you can make yourself back a user, and you will be able
@@ -22,6 +26,28 @@ export default function ChangeRole() {
       .catch((err) => console.log("error getting is admin in iframe", err));
   }, []);
 
+  const handleMakeMeAdmin = () => {
+    makeMeAdmin()
+      .then((res) => {
+        console.log("make me admin", res);
+        if (res) {
+          setIsAdmin(true);
+        }
+      })
+      .catch((err) => console.log("error making me admin in iframe", err));
+  };
+
+  const handleMakeMeUser = () => {
+    makeMeUser()
+      .then((res) => {
+        console.log("make me user", res);
+        if (res) {
+          setIsAdmin(false);
+        }
+      })
+      .catch((err) => console.log("error making me user in iframe", err));
+  };
+
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center text-4xl font-normal leading-[60px] text-secondary-white">
@@ -35,13 +61,15 @@ export default function ChangeRole() {
           {isAdmin !== null && (isAdmin ? textForAdmin : textForUser)}
           {isAdmin === null && "Loading..."}
         </h2>
-        <Link
+        <button
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
-          to="/consumer-main-page/consumer"
+          onClick={
+            isAdmin !== null && (isAdmin ? handleMakeMeUser : handleMakeMeAdmin)
+          }
         >
           {isAdmin !== null && `Make me ${isAdmin ? "user" : "admin"}`}
           {isAdmin === null && "Loading..."}
-        </Link>
+        </button>
       </main>
     </div>
   );
