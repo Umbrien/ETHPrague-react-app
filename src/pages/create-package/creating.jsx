@@ -1,18 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ModalConfirm } from "../../components/ModalConfirm";
-import { createPackage } from "../../contract-requests/getters";
+import { createPackage, setPrintInput } from "../../contract-requests/getters";
 
 export default function Creating() {
   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
   const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
+  const [displayProceedToPrint, setDisplayProceedToPrint] = useState(false);
+  const showProceedToPrint = () => setDisplayProceedToPrint(true);
+  const hideProceedToPrint = () => setDisplayProceedToPrint(false);
 
   const [description, setDescription] = useState("");
 
   const handleClick = () => {
     createPackage(description).then((res) => {
       console.log("create package", res);
+
+      // TODO: set real new package ID
+      setPrintInput(2).then((res) => {
+        console.log("set print input", res);
+        showProceedToPrint();
+      });
     });
   };
 
@@ -52,6 +61,13 @@ export default function Creating() {
           message="If you go back, the information you've entered won't be saved. Are you sure?"
           linkToConfirm="/"
           hide={hideConfirmGoBack}
+        />
+      )}
+      {displayProceedToPrint && (
+        <ModalConfirm
+          message="👌 Package created! To print, click the button above"
+          linkToConfirm="#"
+          hide={hideProceedToPrint}
         />
       )}
     </div>

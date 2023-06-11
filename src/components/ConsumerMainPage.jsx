@@ -26,7 +26,7 @@ export const ConsumerMainPage = () => {
       </div>
       {displayConfirmGoBack && (
         <ModalInput
-          message={`Please scan QR code by clicking "Scan package" button below, then paste ID here`}
+          message={`Please scan QR code by clicking "Scan package" button above, then paste ID here`}
           linkToConfirm={`/track-package/packages-information?id=${
             parseInt(modalInputValue) > 0 ? modalInputValue : ""
           }`}
