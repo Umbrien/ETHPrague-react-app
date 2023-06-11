@@ -7,12 +7,26 @@ import {
   MovedEvent,
   ReportedEvent,
 } from "../../components/Events";
+import { acceptPackage } from "../../contract-requests/getters";
 
 const wallet = "0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51";
 const date = new Date();
 export default function PackageInfo() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+
+  const [isConfirmed, setIsConfirmed] = useState(false);
+
+  const handleConfirm = () => {
+    acceptPackage(id)
+      .then((res) => {
+        console.log("confirm-package", res);
+        if (res) {
+          setIsConfirmed(true);
+        }
+      })
+      .catch((err) => console.log("error confirming package", err));
+  };
 
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
@@ -60,12 +74,13 @@ export default function PackageInfo() {
         </div>
       </main>
       <footer className="m-auto flex w-620 items-center justify-center max-md:w-64 max-md:flex-col">
-        <Link
+        <button
+          onClick={handleConfirm}
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
           to="/"
         >
-          Confirm
-        </Link>
+          {isConfirmed ? "👌 Confirmed" : "Confirm"}
+        </button>
         <Link
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
           to={`/create-package/creating?status=1&parent=${id || 0}`}
