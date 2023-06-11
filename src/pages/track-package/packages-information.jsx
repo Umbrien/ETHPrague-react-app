@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   AcceptedEvent,
   CreatedEvent,
@@ -7,17 +7,18 @@ import {
   MovedEvent,
   ReportedEvent,
 } from "../../components/Events";
-import { getIsLoggedIn, getIsAdmin } from "../../contract-requests/getters";
+import { getIsLoggedIn, acceptPackage } from "../../contract-requests/getters";
 
 const wallet = "0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51";
 const date = new Date();
 export default function PackageInfo() {
-  const [packageID, setPackageID] = useState("Package is NEAR");
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
   const [isLogged, setIsLogged] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(null);
+
+  const [isAccepted, setIsAccepted] = useState(false);
 
   if (isLogged === null) {
-    // isStartedFetchingLogin.current = true;
     getIsLoggedIn()
       .then((res) => {
         setIsLogged(res);
@@ -25,19 +26,16 @@ export default function PackageInfo() {
       .catch((err) => console.log("error getting is logged in iframe", err));
   }
 
-  if (
-    isLogged !== null &&
-    isAdmin === null
-    // && !isStartedFetchingAdmin.current
-  ) {
-    // isStartedFetchingAdmin.current = true;
-    getIsAdmin()
+  const handleAccept = () => {
+    acceptPackage(id)
       .then((res) => {
-        console.log("is admin", res);
-        setIsAdmin(res);
+        console.log("accept-package", res);
+        if (res) {
+          setIsAccepted(true);
+        }
       })
-      .catch((err) => console.log("error getting is admin in iframe", err));
-  }
+      .catch((err) => console.log("error accepting package", err));
+  };
 
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
@@ -76,14 +74,17 @@ export default function PackageInfo() {
               <img
                 className="max-md:w-3/4"
                 src={`https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${encodeURI(
-                  packageID
+                  id
                 )}&choe=UTF-8`}
                 alt="QR code for the package"
               />
               <div className="jusrify-center flex">
-                {isLogged && isAdmin === false && (
-                  <button className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white">
-                    Accept
+                {isLogged && (
+                  <button
+                    onClick={handleAccept}
+                    className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
+                  >
+                    {isAccepted ? "👌 Accepted" : "Accept"}
                   </button>
                 )}
               </div>

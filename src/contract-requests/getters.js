@@ -8,3 +8,4 @@ export const makeMeAdmin = () => request("make-me-admin");
 export const makeMeUser = () => request("make-me-user");
 export const createPackage = (payload) => request("create-package", payload);
 export const createReport = (payload) => request("create-report", payload);
+export const acceptPackage = (payload) => request("accept-package", payload);
