@@ -74,7 +74,7 @@ export default function PackageInfo() {
         </Link>
         <Link
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
-          to="/scan-package/report"
+          to={`/scan-package/report?parent=${id}`}
         >
           Report
         </Link>

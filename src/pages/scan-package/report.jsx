@@ -1,10 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ModalConfirm } from "../../components/ModalConfirm";
+import { createReport } from "../../contract-requests/getters";
+
 export default function Report() {
   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
   const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
+
+  const [reportSent, setReportSent] = useState(false);
+
+  const [reportDescription, setReportDescription] = useState("");
+
+  const [searchParams] = useSearchParams();
+  const parent = searchParams.get("parent");
+
+  const handleSubmit = () => {
+    createReport({ reportDescription, parent })
+      .then((res) => {
+        setReportSent(true);
+        console.log("report created", res);
+      })
+      .catch((err) => console.log("error creating report", err));
+  };
 
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
@@ -19,15 +37,18 @@ export default function Report() {
           Write a report about package violation
         </h1>
         <textarea
+          value={reportDescription}
+          onChange={(e) => setReportDescription(e.target.value)}
           className="border-white mt-8 h-64 rounded-lg border bg-input-background p-5 text-3xl font-normal leading-[48px] text-secondary-white"
-          placeholder="Package description"
+          placeholder="Report description"
         ></textarea>
-        <Link
+        <button
+          onClick={handleSubmit}
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
           to="/"
         >
-          Send
-        </Link>
+          {reportSent ? "Report sent" : "Send report"}
+        </button>
       </main>
       {displayConfirmGoBack && (
         <ModalConfirm
