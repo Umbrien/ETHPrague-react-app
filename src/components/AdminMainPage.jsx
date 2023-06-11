@@ -5,6 +5,8 @@ export const AdminMainPage = () => {
   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
   const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
+  const [modalInputValue, setModalInputValue] = useState("");
+
   return (
     <div className="flex items-center justify-center p-12 max-lg:flex-col max-lg:p-3 max-md:p-6">
       <div className=" flex items-center justify-center">
@@ -28,7 +30,6 @@ export const AdminMainPage = () => {
         </Link>
         <button
           className="mt-3 h-2/3 rounded-lg border-4 border-secondary-white  bg-secondary-black p-12 text-4xl text-secondary-white max-sm:w-64 max-sm:p-5 max-sm:text-2xl"
-          // to="/scan-package/qr-code-scanning"
           onClick={showConfirmGoBack}
         >
           <img className="m-auto" src="/scan.png" alt="" />
@@ -37,9 +38,13 @@ export const AdminMainPage = () => {
       </div>
       {displayConfirmGoBack && (
         <ModalInput
-          message="Input ID"
-          linkToConfirm="/"
+          message={`Please scan QR code by clicking "Scan package" button below, then paste ID here`}
+          linkToConfirm={`/scan-package/packages-information?id=${
+            parseInt(modalInputValue) > 0 ? modalInputValue : ""
+          }`}
           hide={hideConfirmGoBack}
+          state={modalInputValue}
+          setState={setModalInputValue}
         />
       )}
     </div>

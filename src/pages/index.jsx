@@ -58,7 +58,7 @@ export default function Root() {
           to="/track-package/packages-information"
           className=" flex h-14 w-52 items-center justify-center rounded-xl border border-primary-red text-center text-xl font-normal max-sm:h-10 max-sm:w-40 max-sm:text-lg max-[430px]:mt-6"
         >
-          Wallet!
+          Wallet
         </Link>
       </nav>
       <main className="flex  flex-col items-center	max-lg:mt-14">

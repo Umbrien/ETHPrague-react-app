@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const ModalInput = ({ message, linkToConfirm, hide }) => {
+export const ModalInput = ({
+  message,
+  linkToConfirm,
+  hide,
+  state,
+  setState,
+}) => {
   return (
     <div className="fixed left-0 top-0 flex h-screen w-screen items-center justify-center bg-bg-overlay ">
       <div className="w-3/12 rounded-md border border-secondary-white	 bg-secondary-black p-5 max-md:w-3/6 max-sm:w-4/5">
         <h2 className="text-center text-xl text-secondary-white">{message}</h2>
         <input
+          value={state}
+          onChange={(e) => setState(e.target.value)}
           className="border-white mt-8 rounded-lg border bg-input-background p-5 text-xl font-normal leading-[48px] text-secondary-white"
           type="text"
           placeholder="Package ID"
