@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { ModalConfirm } from "../../components/ModalConfirm";
+import { useSearchParams } from "react-router-dom";
 
 export default function QrCodeCreation() {
   const [displayConfirmGoBack, setDisplayConfirmGoBack] = useState(false);
   const showConfirmGoBack = () => setDisplayConfirmGoBack(true);
   const hideConfirmGoBack = () => setDisplayConfirmGoBack(false);
 
-  const [packageID, setPackageID] = useState("Package is NEAR");
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
+  const name = searchParams.get("name");
+  const description = searchParams.get("description");
+
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
       <nav className="flex items-center text-4xl font-normal leading-[60px] text-secondary-white">
@@ -23,18 +28,17 @@ export default function QrCodeCreation() {
           <div className="flex flex-row max-md:flex-col max-md:items-center">
             <div className="w-1/2 max-sm:w-5/6">
               <h2 className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white max-md:text-3xl">
-                Package name
+                {name || "Package name"}
               </h2>
               <p className="mt-8 text-5xl font-normal leading-[72px] text-secondary-white max-md:text-3xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam
+                {description || "Package description"}
               </p>
             </div>
             <div className="m-auto flex items-center justify-center text-3xl font-normal  leading-[48px] text-secondary-white max-md:mt-6">
               <img
                 className="max-md:w-3/4"
                 src={`https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${encodeURI(
-                  packageID
+                  id || "Package is NEAR"
                 )}&choe=UTF-8`}
                 alt="QR code for the package"
               />
