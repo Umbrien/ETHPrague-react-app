@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   AcceptedEvent,
   CreatedEvent,
@@ -11,7 +11,8 @@ import {
 const wallet = "0x6AdB19664D0DAc634a2c011439c86a47d1Ba2A51";
 const date = new Date();
 export default function PackageInfo() {
-  const [packageID, setPackageID] = useState("Package is NEAR");
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
 
   return (
     <div className="relative flex h-1/2 min-h-screen flex-col bg-secondary-black p-5 pl-10 pr-10">
@@ -50,7 +51,7 @@ export default function PackageInfo() {
               <img
                 className=""
                 src={`https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${encodeURI(
-                  packageID
+                  id || ""
                 )}&choe=UTF-8`}
                 alt="QR code for the package"
               />
@@ -67,7 +68,7 @@ export default function PackageInfo() {
         </Link>
         <Link
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
-          to="/create-package/creating"
+          to={`/create-package/creating?status=1&parent=${id || 0}`}
         >
           Handle
         </Link>

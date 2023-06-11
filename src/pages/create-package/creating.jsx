@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { ModalConfirm } from "../../components/ModalConfirm";
 import { createPackage, setPrintInput } from "../../contract-requests/getters";
 
@@ -11,15 +11,24 @@ export default function Creating() {
   const showProceedToPrint = () => setDisplayProceedToPrint(true);
   const hideProceedToPrint = () => setDisplayProceedToPrint(false);
 
+  const [isWaiting, setIsWaiting] = useState(false);
+
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleClick = () => {
-    createPackage(description).then((res) => {
-      console.log("create package", res);
+  const [searchParams] = useSearchParams();
+  const parent = searchParams.get("parent");
+  const status = searchParams.get("status");
 
-      // TODO: set real new package ID
-      setPrintInput(2).then((res) => {
-        console.log("set print input", res);
+  const handleClick = () => {
+    setIsWaiting(true);
+    createPackage({
+      name,
+      description,
+      parent: parseInt(parent) || 0,
+      status: parseInt(status) || 0,
+    }).then((res) => {
+      setPrintInput(res.newSnapshotId).then((res) => {
         showProceedToPrint();
       });
     });
@@ -38,6 +47,8 @@ export default function Creating() {
           Create a package
         </h1>
         <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="border-white mt-8 rounded-lg border bg-input-background p-5 text-3xl font-normal leading-[48px] text-secondary-white"
           type="text"
           placeholder="Package name"
@@ -53,7 +64,7 @@ export default function Creating() {
           onClick={handleClick}
           className="m-auto mt-10 h-12 w-44 rounded-lg bg-primary-red text-center text-2xl font-normal leading-[46px] text-secondary-white"
         >
-          Save
+          {isWaiting ? "Creating..." : "Create"}
         </button>
       </main>
       {displayConfirmGoBack && (
