@@ -1,0 +1,1 @@
+React app for [SustainChain BOS widget](https://github.com/Umbrien/ETHPrague-BOS-widget)
